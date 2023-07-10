@@ -18,7 +18,11 @@
 
 #ifdef RGBLIGHT_ENABLE
 #   define RGBLIGHT_EFFECT_BREATHING
-#endif
+#endif 
 
 #undef SOFT_SERIAL_PIN
 #define SOFT_SERIAL_PIN 13
+
+//Power LED to CAPS LOCK LED
+#define LED_CAPS_LOCK_PIN 24
+#define LED_PIN_ON_STATE 0
