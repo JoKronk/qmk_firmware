@@ -24,3 +24,13 @@ RGBLIGHT_ENABLE = yes
 SPLIT_KEYBOARD = yes
 OLED_ENABLE = yes
 OLED_DRIVER = SSD1306
+
+# WS2812_DRIVER = vendor # Use the RP2040's PIO interface
+
+# Enable Joystick
+JOYSTICK_ENABLE = yes
+
+JOYSTICK_DRIVER = digital
+
+# Debounce eagerly (report change immediately).
+DEBOUNCE_TYPE = sym_eager_pk
