@@ -27,6 +27,8 @@
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
 
+//Shares layer data to slave side
+#define SPLIT_LAYER_STATE_ENABLE
 
 
 // 1000hz Polling Rate
