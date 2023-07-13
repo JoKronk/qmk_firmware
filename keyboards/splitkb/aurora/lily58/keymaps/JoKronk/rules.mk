@@ -34,3 +34,5 @@ JOYSTICK_DRIVER = digital
 
 # Debounce eagerly (report change immediately).
 DEBOUNCE_TYPE = sym_eager_pk
+
+SRC +=  oled.c
