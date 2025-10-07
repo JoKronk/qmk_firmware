@@ -25,6 +25,9 @@ SPLIT_KEYBOARD = yes
 OLED_ENABLE = yes
 OLED_DRIVER = SSD1306
 
+# "qmk compile -e CONVERT_TO=rp2040_ce" doesn't work on newer version of QMK MSYS, this fixes that, just run "qmk compile" with -km and -kb configured
+CONVERT_TO=rp2040_ce
+
 # WS2812_DRIVER = vendor # Use the RP2040's PIO interface
 
 # Enable Joystick

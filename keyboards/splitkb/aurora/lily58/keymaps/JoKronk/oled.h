@@ -3,12 +3,17 @@
 enum layer_states {
 	_BASE,
 	_SPECIAL,
-	_F_KEYS,
-	_LIGHT,
-	_HITBOX,
+	_LIGHTS,
+	_HITBOX_KEYBOARD,
 	_HITBOX_CONTROLLER,
-	_HITBOX_CONTROLLER_OLD
 };
 
+typedef enum {
+	neutral,
+	hitbox_standard,
+	last_input,
+	none
+} socd_mode;
 
-void render_oled(void);
+
+void render_oled(socd_mode);
