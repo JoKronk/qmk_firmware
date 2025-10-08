@@ -20,6 +20,9 @@
 #   define RGBLIGHT_EFFECT_BREATHING
 #endif 
 
+// This redefines which serial pin the TRRS cabel uses for communication, as the default pin (1 / D2) got burnt from
+// pulling the cabel out while having power, a bodge wire was added from it to pin 13 / D5 and defined here to be
+// used for communication instead. https://docs.splitkb.com/product-guides/liatris/pinout
 #undef SOFT_SERIAL_PIN
 #define SOFT_SERIAL_PIN 13
 
