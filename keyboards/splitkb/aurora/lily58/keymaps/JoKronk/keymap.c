@@ -116,156 +116,8 @@ bool DPL_STATE = false;
 bool DPR_STATE = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
-	if (layer_state_is(_HITBOX_KEYBOARD)) {
-		switch (keycode) {
-			case KC_W:
-				if (record->event.pressed) {
-					DPU_STATE = true;
-					switch (SOCDmode) {
-						case neutral:
-							if (DPD_STATE) {
-								unregister_code(KC_S);
-							} else {
-								register_code(KC_W);
-							}
-							return false;
-
-						case hitbox_standard:
-						case last_input:
-							if (DPD_STATE) {
-								unregister_code(KC_S);
-							}
-							register_code(KC_W);
-							return false;
-
-						default: //none
-							register_code(KC_W);
-							return false;
-					}
-				} else {
-					DPU_STATE = false;
-					unregister_code(KC_W);
-					if (DPD_STATE)
-						register_code(KC_S);
-				}
-				return false;
-
-			case KC_S:
-				if (record->event.pressed) {
-					DPD_STATE = true;
-					switch (SOCDmode) {
-						case neutral:
-							if (DPU_STATE) {
-								unregister_code(KC_W);
-							} else {
-								register_code(KC_S);
-							}
-							return false;
-
-						case hitbox_standard:
-							if (!DPU_STATE)
-								register_code(KC_S);
-							return false;
-
-						case last_input:
-							if (DPU_STATE) {
-								unregister_code(KC_W);
-							}
-							register_code(KC_S);
-							return false;
-
-						default: //none
-							register_code(KC_S);
-							return false;
-					}
-				} else {
-					DPD_STATE = false;
-					unregister_code(KC_S);
-					if (DPU_STATE)
-						register_code(KC_W);
-				}
-				return false;
-
-			case KC_A:
-				if (record->event.pressed) {
-					DPL_STATE = true;
-					switch (SOCDmode) {
-						case neutral:
-						case hitbox_standard:
-							if (DPR_STATE) {
-								unregister_code(KC_D);
-							} else {
-								register_code(KC_A);
-							}
-							return false;
-
-						case last_input:
-							if (DPR_STATE) {
-								unregister_code(KC_D);
-							}
-							register_code(KC_A);
-							return false;
-
-						default: //none
-							register_code(KC_A);
-							return false;
-					}
-				} else {
-					DPL_STATE = false;
-					unregister_code(KC_A);
-					if (DPR_STATE)
-						register_code(KC_D);
-				}
-				return false;
-
-			case KC_D:
-				if (record->event.pressed) {
-					DPR_STATE = true;
-					switch (SOCDmode) {
-						case neutral:
-						case hitbox_standard:
-							if (DPL_STATE) {
-								unregister_code(KC_A);
-							} else {
-								register_code(KC_D);
-							}
-							return false;
-
-						case last_input:
-							if (DPL_STATE) {
-								unregister_code(KC_A);
-							}
-							register_code(KC_D);
-							return false;
-
-						default: //none
-							register_code(KC_D);
-							return false;
-					}
-				} else {
-					DPR_STATE = false;
-					unregister_code(KC_D);
-					if (DPL_STATE)
-						register_code(KC_A);
-				}
-				return false;
-
-			case SOC_TOG:
-				if (record->event.pressed) {
-					if (SOCDmode >= none)
-						SOCDmode = neutral;
-					else 
-						SOCDmode += 1;
-				}
-				return false;
-
-			default:
-				return true;
-		}
-	}
-
-	else {
+	
+	if (layer_state_is(_HITBOX_CONTROLLER)) {
 		switch (keycode) {
 			case GC_DPU:
 				if (record->event.pressed) {
@@ -503,4 +355,153 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				return true;
 		}
 	}
+
+	else if (layer_state_is(_HITBOX_KEYBOARD)) {
+		switch (keycode) {
+			case KC_W:
+				if (record->event.pressed) {
+					DPU_STATE = true;
+					switch (SOCDmode) {
+						case neutral:
+							if (DPD_STATE) {
+								unregister_code(KC_S);
+							} else {
+								register_code(KC_W);
+							}
+							return false;
+
+						case hitbox_standard:
+						case last_input:
+							if (DPD_STATE) {
+								unregister_code(KC_S);
+							}
+							register_code(KC_W);
+							return false;
+
+						default: //none
+							register_code(KC_W);
+							return false;
+					}
+				} else {
+					DPU_STATE = false;
+					unregister_code(KC_W);
+					if (DPD_STATE)
+						register_code(KC_S);
+				}
+				return false;
+
+			case KC_S:
+				if (record->event.pressed) {
+					DPD_STATE = true;
+					switch (SOCDmode) {
+						case neutral:
+							if (DPU_STATE) {
+								unregister_code(KC_W);
+							} else {
+								register_code(KC_S);
+							}
+							return false;
+
+						case hitbox_standard:
+							if (!DPU_STATE)
+								register_code(KC_S);
+							return false;
+
+						case last_input:
+							if (DPU_STATE) {
+								unregister_code(KC_W);
+							}
+							register_code(KC_S);
+							return false;
+
+						default: //none
+							register_code(KC_S);
+							return false;
+					}
+				} else {
+					DPD_STATE = false;
+					unregister_code(KC_S);
+					if (DPU_STATE)
+						register_code(KC_W);
+				}
+				return false;
+
+			case KC_A:
+				if (record->event.pressed) {
+					DPL_STATE = true;
+					switch (SOCDmode) {
+						case neutral:
+						case hitbox_standard:
+							if (DPR_STATE) {
+								unregister_code(KC_D);
+							} else {
+								register_code(KC_A);
+							}
+							return false;
+
+						case last_input:
+							if (DPR_STATE) {
+								unregister_code(KC_D);
+							}
+							register_code(KC_A);
+							return false;
+
+						default: //none
+							register_code(KC_A);
+							return false;
+					}
+				} else {
+					DPL_STATE = false;
+					unregister_code(KC_A);
+					if (DPR_STATE)
+						register_code(KC_D);
+				}
+				return false;
+
+			case KC_D:
+				if (record->event.pressed) {
+					DPR_STATE = true;
+					switch (SOCDmode) {
+						case neutral:
+						case hitbox_standard:
+							if (DPL_STATE) {
+								unregister_code(KC_A);
+							} else {
+								register_code(KC_D);
+							}
+							return false;
+
+						case last_input:
+							if (DPL_STATE) {
+								unregister_code(KC_A);
+							}
+							register_code(KC_D);
+							return false;
+
+						default: //none
+							register_code(KC_D);
+							return false;
+					}
+				} else {
+					DPR_STATE = false;
+					unregister_code(KC_D);
+					if (DPL_STATE)
+						register_code(KC_A);
+				}
+				return false;
+
+			case SOC_TOG:
+				if (record->event.pressed) {
+					if (SOCDmode >= none)
+						SOCDmode = neutral;
+					else 
+						SOCDmode += 1;
+				}
+				return false;
+
+			default:
+				return true;
+		}
+	}
+	return true;
 };
